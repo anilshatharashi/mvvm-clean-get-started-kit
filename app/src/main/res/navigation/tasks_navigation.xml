@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/notesFragment">
+
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.anil_shatharashi.clean.mvvm.presentation.ui.tasklist.TaskListFragment"
+        android:label="@string/label_task_list"
+        tools:layout="@layout/fragment_task_list">
+
+        <action
+            android:id="@+id/action_task_selection"
+            app:destination="@id/taskDetailFragment"
+            app:enterAnim="@anim/enter_slide_down"
+            app:exitAnim="@anim/exit_slide_down"
+            app:popEnterAnim="@anim/pop_enter_slide_up"
+            app:popExitAnim="@anim/pop_exit_slide_up" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.anil_shatharashi.clean.mvvm.presentation.ui.taskdetail.TaskDetailFragment"
+        android:label="@string/label_task_detail"
+        tools:layout="@layout/fragment_task_detail">
+
+        <argument
+            android:name="taskId"
+            app:argType="integer" />
+
+    </fragment>
+
+</navigation>

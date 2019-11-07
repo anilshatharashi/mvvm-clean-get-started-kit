@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion parent.ext.androidCompileSdkVersion
+    buildToolsVersion parent.ext.androidBuildToolsVersion
+    defaultConfig {
+        minSdkVersion parent.ext.androidMinSdkVersion
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+android {
+    compileSdkVersion parent.ext.androidCompileSdkVersion
+    buildToolsVersion parent.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion parent.ext.androidMinSdkVersion
+        targetSdkVersion parent.ext.androidTargetSdkVersion
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain')
+
+    implementation rootProject.ext.dependencies.kotlin
+    implementation rootProject.ext.dependencies.rxKotlin
+    implementation rootProject.ext.dependencies.appCompat
+    implementation rootProject.ext.dependencies.roomRuntime
+    implementation rootProject.ext.dependencies.rxRoom
+    implementation rootProject.ext.dependencies.gson
+    kapt rootProject.ext.dependencies.roomCompiler
+
+    implementation rootProject.ext.dependencies.rxAndroid
+    implementation rootProject.ext.dependencies.rxJava
+    implementation rootProject.ext.dependencies.rxAdapterRetrofit
+
+    testImplementation rootProject.ext.testDependencies.junit
+    testImplementation rootProject.ext.testDependencies.mockito
+    testImplementation rootProject.ext.testDependencies.kotlinJUnit
+    testImplementation rootProject.ext.testDependencies.kotlinMockk13
+
+    androidTestImplementation rootProject.ext.androidTestDependencies.androidJUnitRunner
+    androidTestImplementation rootProject.ext.androidTestDependencies.jUnitRules
+    androidTestImplementation rootProject.ext.androidTestDependencies.espressoCore
+    androidTestImplementation rootProject.ext.androidTestDependencies.espressoContrib
+    androidTestImplementation rootProject.ext.androidTestDependencies.espressoIntents
+}

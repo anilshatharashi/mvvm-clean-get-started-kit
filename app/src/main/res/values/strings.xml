@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">anil_shatharashi</string>
+    <string name="action_settings">Settings</string>
+    <string name="fetch_data">Fetch Data</string>
+    <string name="tenth_char">Tenth Char : %s</string>
+    <string name="every_tenth_char">Every Tenth Char : %s</string>
+    <string name="words_count">Words : %s</string>
+    <string name="task">Task = %d</string>
+    <string name="tasks_not_found">Empty Tasks</string>
+    <string name="label_task_list">Task List</string>
+    <string name="label_task_detail">Task Detail</string>
+    <string name="task_id">Task Id : %d</string>
+    <string name="description">Description : %s</string>
+    <string name="task_name">Task Name : %s</string>
+    <string name="notification">Notification : %s</string>
+    <string name="data_empty_message">No Data Available</string>
+</resources>

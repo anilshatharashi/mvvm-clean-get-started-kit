@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    implementation rootProject.ext.dependencies.rxJava
+    implementation rootProject.ext.dependencies.kotlin
+    implementation rootProject.ext.dependencies.rxKotlin
+
+    testImplementation rootProject.ext.testDependencies.junit
+    testImplementation rootProject.ext.testDependencies.kotlinJUnit
+    testImplementation rootProject.ext.testDependencies.kotlinMockk13
+    testImplementation rootProject.ext.testDependencies.mockito
+}

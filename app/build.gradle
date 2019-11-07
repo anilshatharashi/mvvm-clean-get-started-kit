@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.anil_shatharashi.clean.mvvm"
+        minSdkVersion 17
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "com.anil_shatharashi.clean.mvvm.presentation.CleanMvvmJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation project(':domain')
+    implementation project(':data')
+
+    implementation rootProject.ext.dependencies.multidex
+    implementation rootProject.ext.dependencies.androidArcExtension
+    implementation rootProject.ext.dependencies.koin
+    implementation rootProject.ext.dependencies.koinViewModel
+    implementation rootProject.ext.dependencies.appCompat
+    implementation rootProject.ext.dependencies.designLibrary
+    implementation rootProject.ext.dependencies.constraintLayout
+    implementation rootProject.ext.dependencies.kotlin
+    implementation rootProject.ext.dependencies.kotlinReflection
+    implementation rootProject.ext.dependencies.anko
+    implementation rootProject.ext.dependencies.retrofit
+    implementation rootProject.ext.dependencies.gsonConverter
+    implementation rootProject.ext.dependencies.okHttpLoggingInterceptor
+    implementation rootProject.ext.dependencies.rxJavaForAndroidArc
+    implementation rootProject.ext.dependencies.rxJava
+    implementation rootProject.ext.dependencies.rxAndroid
+    implementation rootProject.ext.dependencies.rxAdapterRetrofit
+    implementation rootProject.ext.dependencies.navigationFragment
+    implementation rootProject.ext.dependencies.navigationUI
+
+    testImplementation rootProject.ext.testDependencies.junit
+    testImplementation rootProject.ext.testDependencies.kotlinMockk13
+    testImplementation rootProject.ext.androidTestDependencies.androidCoreTesting
+
+    androidTestImplementation rootProject.ext.androidTestDependencies.androidJUnitRunner
+    androidTestImplementation rootProject.ext.androidTestDependencies.koinTest
+    androidTestImplementation rootProject.ext.androidTestDependencies.jUnitRules
+    androidTestImplementation rootProject.ext.androidTestDependencies.espressoCore
+    androidTestImplementation rootProject.ext.androidTestDependencies.espressoContrib
+    androidTestImplementation rootProject.ext.androidTestDependencies.espressoIntents
+    androidTestImplementation rootProject.ext.androidTestDependencies.androidCoreTesting
+    androidTestImplementation rootProject.ext.androidTestDependencies.androidKotlinMockk13
+
+}
