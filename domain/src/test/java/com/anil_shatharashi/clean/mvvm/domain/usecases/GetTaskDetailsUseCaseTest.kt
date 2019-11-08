@@ -1,7 +1,7 @@
 package com.anil_shatharashi.clean.mvvm.domain.usecases
 
 import com.anil_shatharashi.clean.mvvm.domain.executor.SchedulerProvider
-import com.anil_shatharashi.clean.mvvm.domain.gateway.AnyApiGateway
+import com.anil_shatharashi.clean.mvvm.domain.gateway.TasksNetworkGateway
 import com.anil_shatharashi.clean.mvvm.domain.model.Task
 import com.anil_shatharashi.clean.mvvm.domain.util.RxSchedulerRule
 import io.mockk.every
@@ -14,7 +14,7 @@ import org.junit.Test
 import org.mockito.Matchers.any
 
 class GetTaskDetailsUseCaseTest {
-    private lateinit var gateway: AnyApiGateway
+    private lateinit var gateway: TasksNetworkGateway
     private lateinit var scheduler: SchedulerProvider
     @Rule
     @JvmField

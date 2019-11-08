@@ -1,6 +1,6 @@
 package com.anil_shatharashi.clean.mvvm.presentation.di
 
-import com.anil_shatharashi.clean.mvvm.data.source.api.AnyApi
+import com.anil_shatharashi.clean.mvvm.data.repository.remote.api.AnyApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

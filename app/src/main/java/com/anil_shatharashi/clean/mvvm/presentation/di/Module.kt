@@ -2,9 +2,15 @@ package com.anil_shatharashi.clean.mvvm.presentation.di
 
 import com.anil_shatharashi.clean.mvvm.BuildConfig
 import com.anil_shatharashi.clean.mvvm.data.executor.ThreadSchedulerProvider
+import com.anil_shatharashi.clean.mvvm.data.mapper.TaskDataMapper
 import com.anil_shatharashi.clean.mvvm.data.repository.AnyApiRepository
+import com.anil_shatharashi.clean.mvvm.data.repository.TasksLocalRepository
+import com.anil_shatharashi.clean.mvvm.data.repository.local.TaskEntity
 import com.anil_shatharashi.clean.mvvm.domain.executor.SchedulerProvider
-import com.anil_shatharashi.clean.mvvm.domain.gateway.AnyApiGateway
+import com.anil_shatharashi.clean.mvvm.domain.gateway.TasksLocalGateway
+import com.anil_shatharashi.clean.mvvm.domain.gateway.TasksNetworkGateway
+import com.anil_shatharashi.clean.mvvm.domain.mappers.TwoWaysMapper
+import com.anil_shatharashi.clean.mvvm.domain.model.Task
 import com.anil_shatharashi.clean.mvvm.domain.usecases.GetTaskDetailsUseCase
 import com.anil_shatharashi.clean.mvvm.domain.usecases.GetTaskListUseCase
 import com.anil_shatharashi.clean.mvvm.presentation.viewmodel.TaskListViewModel
@@ -29,7 +35,8 @@ val domainModule = module {
 
 val dataModule = module {
     single(named("AnyApi")) { ApiServiceFactory.createAnyApiService(BuildConfig.DEBUG) }
-
-    single<AnyApiGateway> { AnyApiRepository(get(named("AnyApi"))) }
-
+    single<TasksNetworkGateway> { AnyApiRepository(get(named("AnyApi"))) }
+    single<TasksLocalGateway> { TasksLocalRepository(get(), get()) }
+    single<TwoWaysMapper<TaskEntity, Task>> { TaskDataMapper() }
+    single { DatabaseFactory.getDBInstance(get()) }
 }

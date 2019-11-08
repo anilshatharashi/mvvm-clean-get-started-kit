@@ -1,8 +1,8 @@
 package com.anil_shatharashi.clean.mvvm.data.repository
 
-import com.anil_shatharashi.clean.mvvm.data.source.api.AnyApi
+import com.anil_shatharashi.clean.mvvm.data.repository.remote.api.AnyApi
 import com.anil_shatharashi.clean.mvvm.data.util.UIRxSchedulerRule
-import com.anil_shatharashi.clean.mvvm.domain.gateway.AnyApiGateway
+import com.anil_shatharashi.clean.mvvm.domain.gateway.TasksNetworkGateway
 import com.anil_shatharashi.clean.mvvm.domain.model.Task
 import io.mockk.mockk
 import io.mockk.spyk
@@ -17,7 +17,7 @@ import org.junit.Test
 class AnyApiRepositoryTest {
 
     private lateinit var compositeDisposable: CompositeDisposable
-    private lateinit var anyApiGateway: AnyApiGateway
+    private lateinit var anyApiGateway: TasksNetworkGateway
     private lateinit var anyApi: AnyApi
 
     @Rule
@@ -38,10 +38,10 @@ class AnyApiRepositoryTest {
 
     @Test
     fun getOpportunitiesTasks_call() {
-        val testObserver = anyApiGateway.getOpportunitiesTasks()
+        val testObserver = anyApiGateway.getTasks()
         testObserver.test()
 
-        verify(exactly = 1) { anyApiGateway.getOpportunitiesTasks() }
+        verify(exactly = 1) { anyApiGateway.getTasks() }
     }
 
     @Test
@@ -57,9 +57,9 @@ class AnyApiRepositoryTest {
         val responseObservable = Single.just(listOf(2, 9, 10, 12, 13, 15))
 
         val responseObservableTest = responseObservable.test()
-        val testObserver = anyApiGateway.getOpportunitiesTasks().subscribe()
+        val testObserver = anyApiGateway.getTasks().subscribe()
         compositeDisposable.add(testObserver)
-        verify(exactly = 1) { anyApi.getOpportunitiesTasks()}
+        verify(exactly = 1) { anyApi.getTasks()}
 
         responseObservableTest.assertComplete()
         responseObservableTest.assertNoErrors()
@@ -72,7 +72,7 @@ class AnyApiRepositoryTest {
         val errorResponse = Single.error<List<Int>>(exception)
         val responseObservableTest = errorResponse.test()
 
-        val testObserver = anyApiGateway.getOpportunitiesTasks().subscribe()
+        val testObserver = anyApiGateway.getTasks().subscribe()
         compositeDisposable.add(testObserver)
 
         responseObservableTest.assertValueCount(0)
