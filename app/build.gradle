@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs'
 
@@ -29,15 +30,18 @@ androidExtensions {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    kapt rootProject.ext.dependencies.daggerCompiler
+    kapt rootProject.ext.dependencies.daggerAndroidCompiler
 
     implementation project(':domain')
     implementation project(':data')
 
     implementation rootProject.ext.dependencies.multidex
     implementation rootProject.ext.dependencies.androidArcExtension
-    implementation rootProject.ext.dependencies.koin
-    implementation rootProject.ext.dependencies.koinViewModel
+    implementation rootProject.ext.dependencies.dagger
+    implementation rootProject.ext.dependencies.daggerAndroid
     implementation rootProject.ext.dependencies.appCompat
     implementation rootProject.ext.dependencies.designLibrary
     implementation rootProject.ext.dependencies.constraintLayout
@@ -59,7 +63,6 @@ dependencies {
     testImplementation rootProject.ext.androidTestDependencies.androidCoreTesting
 
     androidTestImplementation rootProject.ext.androidTestDependencies.androidJUnitRunner
-    androidTestImplementation rootProject.ext.androidTestDependencies.koinTest
     androidTestImplementation rootProject.ext.androidTestDependencies.jUnitRules
     androidTestImplementation rootProject.ext.androidTestDependencies.espressoCore
     androidTestImplementation rootProject.ext.androidTestDependencies.espressoContrib

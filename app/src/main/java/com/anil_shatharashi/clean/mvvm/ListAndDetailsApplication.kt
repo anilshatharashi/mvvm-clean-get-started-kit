@@ -1,25 +1,19 @@
 package com.anil_shatharashi.clean.mvvm
 
-import androidx.multidex.MultiDexApplication
-import com.anil_shatharashi.clean.mvvm.presentation.di.appModule
-import com.anil_shatharashi.clean.mvvm.presentation.di.dataModule
-import com.anil_shatharashi.clean.mvvm.presentation.di.domainModule
-import com.anil_shatharashi.clean.mvvm.presentation.di.useCasesModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
-import org.koin.core.module.Module
+import android.app.Application
+import com.anil_shatharashi.clean.mvvm.presentation.di.*
 
-open class ListAndDetailsApplication : MultiDexApplication()  {
+open class ListAndDetailsApplication : Application() {
 
-    protected val appComponent: MutableList<Module> = mutableListOf(useCasesModule, appModule, domainModule, dataModule)
+    companion object {
+        lateinit var appComponent: ApplicationComponent
+    }
 
     override fun onCreate() {
         super.onCreate()
-
-        startKoin {
-            androidContext(applicationContext)
-            modules(appComponent)
-        }
+        appComponent = DaggerAppComponent
+            .builder()
+            .provideApplication(this)
     }
 
 }

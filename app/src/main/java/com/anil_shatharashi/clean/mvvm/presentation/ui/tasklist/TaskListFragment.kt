@@ -5,25 +5,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.anil_shatharashi.clean.mvvm.ListAndDetailsApplication
 import com.anil_shatharashi.clean.mvvm.R
+import com.anil_shatharashi.clean.mvvm.presentation.di.ViewModelFactory
 import com.anil_shatharashi.clean.mvvm.presentation.ui.tasklist.TaskListFragmentDirections.actionTaskSelection
 import com.anil_shatharashi.clean.mvvm.presentation.viewmodel.TaskListViewModel
-import kotlinx.android.synthetic.main.fragment_task_list.tasksRecyclerView
-import org.koin.android.viewmodel.ext.android.viewModel
+import kotlinx.android.synthetic.main.fragment_task_list.*
+import javax.inject.Inject
 
 class TaskListFragment : Fragment() {
 
     private val clickListener: ClickListener = this::onTaskClicked
     private val recyclerViewAdapter = TaskListAdapter(clickListener)
-    private val viewModel: TaskListViewModel by viewModel()
+    @Inject
+    lateinit var viewModelFactory:ViewModelFactory
+    private val viewModel: TaskListViewModel by activityViewModels { viewModelFactory }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        ListAndDetailsApplication.appComponent.inject(this)
         return inflater.inflate(R.layout.fragment_task_list, container, false)
     }
 

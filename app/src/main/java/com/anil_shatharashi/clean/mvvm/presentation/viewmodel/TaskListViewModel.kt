@@ -3,8 +3,9 @@ package com.anil_shatharashi.clean.mvvm.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.anil_shatharashi.clean.mvvm.domain.usecases.GetTaskListUseCase
 import com.anil_shatharashi.clean.mvvm.presentation.model.Resource
+import javax.inject.Inject
 
-open class TaskListViewModel(private val getTaskListUseCase: GetTaskListUseCase) : RxViewModel() {
+open class TaskListViewModel @Inject constructor(private val getTaskListUseCase: GetTaskListUseCase) : RxViewModel() {
     val taskListLiveData = MutableLiveData<Resource<List<Int>>>()
 
     open fun loadListOfTasks() {

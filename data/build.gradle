@@ -35,6 +35,7 @@ dependencies {
     implementation rootProject.ext.dependencies.rxRoom
     implementation rootProject.ext.dependencies.gson
     kapt rootProject.ext.dependencies.roomCompiler
+    implementation rootProject.ext.dependencies.dagger
 
     implementation rootProject.ext.dependencies.rxAndroid
     implementation rootProject.ext.dependencies.rxJava

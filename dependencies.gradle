@@ -5,7 +5,7 @@ allprojects {
         retrofitVersion = "2.3.0"
         gsonVersion = "2.8.4"
         okhttpVersion = "3.8.1"
-        koinVersion = "2.0.0"
+        daggerVersion = "2.34"
         timberVersion = "4.7.1"
         rxAndroidVersion = "1.0.1"
         androidXLegacySupport = "1.0.0-beta01"
@@ -14,7 +14,6 @@ allprojects {
         rxKotlinVersion = '2.1.0'
         ankoVersion = "0.10.4"
         navigationVersion = "2.1.0"
-        kotlinVersion = "1.3.31"
         materialVersion = "1.1.0-alpha09"
         multiDexVersion = "2.0.1"
 
@@ -27,8 +26,10 @@ allprojects {
                 kotlinReflection        : "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
                 rxKotlin                : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
                 androidArcExtension     : "android.arch.lifecycle:extensions:1.1.1",
-                koin                    : "org.koin:koin-android-scope:${koinVersion}",
-                koinViewModel           : "org.koin:koin-android-viewmodel:${koinVersion}",
+                dagger                  : "com.google.dagger:dagger:$daggerVersion",
+                daggerAndroid           : "com.google.dagger:dagger-android:$daggerVersion",
+                daggerCompiler          : "com.google.dagger:dagger-compiler:$daggerVersion",
+                daggerAndroidCompiler   : "com.google.dagger:dagger-android-processor:$daggerVersion",
                 anko                    : "org.jetbrains.anko:anko-commons:$ankoVersion",
                 retrofit                : "com.squareup.retrofit2:retrofit:$retrofitVersion",
                 gson                    : "com.google.code.gson:gson:$gsonVersion",
@@ -62,7 +63,6 @@ allprojects {
                                    espressoCore        : "androidx.test.espresso:espresso-core:$espressoVersion",
                                    espressoContrib     : "androidx.test.espresso:espresso-contrib:$espressoVersion",
                                    espressoIntents     : "androidx.test.espresso:espresso-intents:$espressoVersion",
-                                   androidCoreTesting  : 'android.arch.core:core-testing:1.1.1',
-                                   koinTest            : "org.koin:koin-test:$koinVersion"]
+                                   androidCoreTesting  : 'android.arch.core:core-testing:1.1.1']
     }
 }
